@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv").config();
 const database = require("./config/dbConnection");
 const jwt = require('jsonwebtoken');
 // importing model
 const userModel = require("./models/userModel");
+const foodModel = require('./models/foodModel');
 app.use(express.json());
 
 // app.use(bodyParser.json());
@@ -157,8 +157,21 @@ app.post("/login",async(req,res)=>{
 }
 
 })
+
+//endpoint to fetch all foods
+app.get('/foods',async(req,res)=>{
+  try {
+    const foods = await foodModel.find();
+    res.status(200).send(foods);
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({error:"Problem from fetching data"})
+  }
+})
 app.listen(5000, () => {
   console.log(`Server is up and listening at port 5000`);
 });
+
 
 
