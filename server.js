@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv").config();
 const database = require("./config/dbConnection");
+const jwt = require('jsonwebtoken');
 // importing model
 const userModel = require("./models/userModel");
 app.use(express.json());
@@ -135,7 +136,11 @@ app.post("/login",async(req,res)=>{
         if(user!==null){
            await bcrypt.compare(userCred.password,user.password,(err,result)=>{
                 if(result){
-                    res.send("User login successfully");
+                  jwt.sign({name:userCred.name},"MRMASUKOJHOL69",(err,token)=>{
+                    if(!err) {
+                      res.status(200).send({token:token,message:"Login Successful"})
+                    }
+                  })
                 }else{
                     res.status(403).send({error:"Incorrect Password"});
                 }
