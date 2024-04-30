@@ -1,27 +1,38 @@
 const mongoose = require('mongoose');
 
 
-const trackingSchema = new mongoose.Schema({
-    user:{
+const trackingSchema = mongoose.Schema({
+    userId:{
         type:mongoose.Schema.Types.ObjectId,
-        required:true,
-        ref:'users'
+        ref:'users',
+        required:true
     },
-    food:{
+    foodId:{
         type:mongoose.Schema.Types.ObjectId,
-        required:true,
-        ref:'foods'
+        ref:'foods',
+        required:true
     },
-    quantity:{
-        type:Number,
-        required:true,
-        min:1
+    details:{
+       
+        calories:Number,
+        protein:Number,
+        carbohydrates:Number,
+        fat:Number,
+        fiber:Number,
+       
     },
     eatenDate:{
         type:String,
-        default: new Date().toLocaleDateString()
+        default:new Date().toLocaleDateString()
+    },
+    quantity:{
+        type:Number,
+        min:1,
+        required:true
     }
 },{timestamps:true})
 
-const trackingModel = mongoose.model('trackings',trackingSchema);
-module.exports=trackingModel;
+
+const trackingModel = mongoose.model("trackings",trackingSchema);
+
+module.exports = trackingModel;
