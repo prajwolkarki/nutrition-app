@@ -13,6 +13,7 @@ const trackingModel = require("./models/trackingModel");
 
 //authenticate using local-strategy
 const passport = require("./auth");
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
@@ -144,6 +145,7 @@ app.get("/track/:userId/:date", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log(`Server is up and listening at port 5000`);
+app.listen(PORT, () => {
+  console.log(`Server is up and listening at port ${PORT}`);
 });
+
