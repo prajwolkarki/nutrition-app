@@ -40,7 +40,9 @@ app.post("/register", (req, res) => {
     }
   });
 });
-
+app.get("/",(req,res)=>{
+  res.json("Nutrition Backend");
+})
 //endpoint for logging
 app.post("/login", async (req, res) => {
   const userCred = req.body;
