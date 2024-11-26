@@ -18,6 +18,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 const allowedOrigins = [
     'http://localhost:3000', 
+    'https://nutrition-app-dpud.onrender.com'
 ];
 
 app.use(cors({
