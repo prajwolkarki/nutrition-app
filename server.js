@@ -16,7 +16,20 @@ const passport = require("./auth");
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use(cors());
+const allowedOrigins = [
+    'http://localhost:3000', 
+];
+
+app.use(cors({
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
+}));
 const authMiddleware = passport.authenticate("local", { session: false });
 app.use(passport.initialize());
 app.post("/register", (req, res) => {
