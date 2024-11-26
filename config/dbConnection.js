@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/nutrify');
+mongoose.connect('mongodb+srv://prajwol:root@cluster0.emxcw.mongodb.net/');
 
 const db = mongoose.connection;
 
