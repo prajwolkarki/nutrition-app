@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors({
-  origin: 'https://nutritionapp-psi.vercel.app/', // Specific origin
+  origin: 'https://nutritionapp-psi.vercel.app', // Specific origin
   credentials: true, // Allow credentials
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
   allowedHeaders: ['Content-Type', 'Authorization']
