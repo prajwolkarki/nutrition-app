@@ -16,20 +16,11 @@ const passport = require("./auth");
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-const allowedOrigins = [
-    'http://localhost:3000', 
-    'https://nutrition-app-dpud.onrender.com'
-];
-
 app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true
+  origin: 'https://nutritionapp-psi.vercel.app/', // Specific origin
+  credentials: true, // Allow credentials
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 const authMiddleware = passport.authenticate("local", { session: false });
 app.use(passport.initialize());
